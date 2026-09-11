@@ -177,14 +177,6 @@ img {
   }
 }
 
-.scroll-hint {
-  margin-top: 3rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #999;
-}
-
 .stats {
   padding: 8rem 8vw;
   background: var(--bg);

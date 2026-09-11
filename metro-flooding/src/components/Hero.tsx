@@ -14,16 +14,15 @@ export default function Hero() {
         .from(".hero h1", { y: 60, opacity: 0, duration: 1 }, "-=0.7")
         .from(".hero p", { y: 40, opacity: 0, duration: 0.9 }, "-=0.6")
         .from(".hero-meta", { opacity: 0, y: 20, duration: 0.8 }, "-=0.4")
-        .from(".scroll-hint", { opacity: 0, duration: 0.6 }, "-=0.3");
-
-      gsap.to(".scroll-hint", {
-        y: 8,
-        duration: 1.4,
-        ease: "power1.inOut",
-        repeat: -1,
-        yoyo: true,
-        delay: 1.5,
-      });
+        .from(".scroll-hint", { opacity: 0, duration: 0.6 }, "-=0.3")
+        .to(".scroll-hint", {
+          y: 12,
+          duration: 1.4,
+          ease: "power1.inOut",
+          repeat: -1,
+          yoyo: true,
+          delay: 2,
+        });
     },
     { scope: containerRef },
   );
