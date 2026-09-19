@@ -1,5 +1,6 @@
 import Nav from "./components/Nav";
 import ScrollProgress from "./components/ScrollProgress";
+import Background from "./components/Background";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
 import Causes from "./components/Causes";
@@ -12,16 +13,19 @@ function App() {
   useSmoothScroll();
 
   return (
-    <main>
+    <>
+      <Background />
       <Nav />
       <ScrollProgress />
-      <Hero />
-      <Stats />
-      <Causes />
-      <Impact />
-      <Solutions />
-      <CallToAction />
-    </main>
+      <main>
+        <Hero />
+        <Stats />
+        <Causes />
+        <Impact />
+        <Solutions />
+        <CallToAction />
+      </main>
+    </>
   );
 }
 

@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SectionEyebrow from "./SectionEyebrow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,6 +43,29 @@ export default function Causes() {
       gsap.set(dots, { scale: 0.6, backgroundColor: "#55556A" });
       gsap.set(dots[0], { scale: 1, backgroundColor: "#A78BFA" });
 
+      // === Header entrance (plays as the section scrolls into view) ===
+      const headerTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 70%",
+          once: true,
+        },
+      });
+
+      headerTl
+        .from(".causes .section-eyebrow", {
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          ease: "power3.out",
+        })
+        .from(
+          ".causes h2",
+          { opacity: 0, y: 30, duration: 0.9, ease: "power3.out" },
+          "-=0.4",
+        );
+
+      // === Pinned cause-cycling timeline (unchanged) ===
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -75,6 +99,7 @@ export default function Causes() {
 
   return (
     <section className="causes" ref={containerRef} id="causes">
+      <SectionEyebrow number="02" label="Root Causes" />
       <h2>Why It Happens</h2>
       <div className="causes-stage">
         {CAUSES.map((cause, i) => (

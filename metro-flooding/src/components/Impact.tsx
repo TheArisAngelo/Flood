@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SectionEyebrow from "./SectionEyebrow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,6 +87,7 @@ export default function Impact() {
 
   return (
     <section className="impact" ref={containerRef} id="impact">
+      <SectionEyebrow number="03" label="Evidence" />
       <h2>What It Looks Like</h2>
       <div className="impact-grid">
         {IMPACTS.map((item, i) => (

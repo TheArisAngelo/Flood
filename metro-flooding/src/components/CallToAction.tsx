@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SectionEyebrow from "./SectionEyebrow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,6 +59,7 @@ export default function CallToAction() {
 
   return (
     <section className="cta" ref={containerRef} id="cta">
+      <SectionEyebrow number="05" label="Call to Action" />
       <h2>What You Can Do</h2>
       <ul className="cta-list">
         {ACTIONS.map((action, i) => (

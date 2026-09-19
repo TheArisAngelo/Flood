@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SectionEyebrow from "./SectionEyebrow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,6 +80,7 @@ export default function Stats() {
 
   return (
     <section className="stats" ref={containerRef} id="stats">
+      <SectionEyebrow number="01" label="Context" />
       <h2>By the Numbers</h2>
       <div className="stats-grid">
         {STATS.map((stat, i) => (

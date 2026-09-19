@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { HERO_META } from "../data/heroMeta";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,16 +14,29 @@ export default function Hero() {
         .from(".hero-eyebrow", { opacity: 0, y: 20, duration: 0.8 }, "-=1.4")
         .from(".hero h1", { y: 60, opacity: 0, duration: 1 }, "-=0.7")
         .from(".hero p", { y: 40, opacity: 0, duration: 0.9 }, "-=0.6")
-        .from(".hero-meta", { opacity: 0, y: 20, duration: 0.8 }, "-=0.4")
-        .from(".scroll-hint", { opacity: 0, duration: 0.6 }, "-=0.3")
-        .to(".scroll-hint", {
-          y: 12,
-          duration: 1.4,
-          ease: "power1.inOut",
-          repeat: -1,
-          yoyo: true,
-          delay: 2,
-        });
+        .from(".hero-meta", { opacity: 0, duration: 0.4 }, "-=0.4")
+        .from(
+          ".hero-meta-col",
+          {
+            opacity: 0,
+            y: 16,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power3.out",
+          },
+          "<",
+        )
+        .from(".scroll-hint", { opacity: 0, duration: 0.6 }, "-=0.3");
+
+      // Pulse starts after entrance finishes
+      gsap.to(".scroll-hint", {
+        y: 12,
+        duration: 1.2,
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 2,
+      });
     },
     { scope: containerRef },
   );
@@ -49,18 +63,16 @@ export default function Hero() {
         </p>
 
         <div className="hero-meta">
-          <div className="hero-meta-col">
-            <span className="hero-meta-label">Scope</span>
-            <span className="hero-meta-value">16 Cities</span>
-          </div>
-          <div className="hero-meta-col">
-            <span className="hero-meta-label">Season</span>
-            <span className="hero-meta-value">Jun – Nov</span>
-          </div>
-          <div className="hero-meta-col">
-            <span className="hero-meta-label">Status</span>
-            <span className="hero-meta-value">Ongoing</span>
-          </div>
+          {HERO_META.map((item, i) => (
+            <div className="hero-meta-col" key={i}>
+              <span className="hero-meta-label">{item.label}</span>
+              <span
+                className={`hero-meta-value${item.highlight ? " is-highlight" : ""}`}
+              >
+                {item.value}
+              </span>
+            </div>
+          ))}
         </div>
 
         <span className="scroll-hint">Scroll ↓</span>
