@@ -3,30 +3,39 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionEyebrow from "./SectionEyebrow";
+import floodAgain from "../images/flood_again.webp";
+import flood from "../images/flood.webp";
+import landslide from "../images/landslide.webp";
+import studentsFlood from "../images/students_flood.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type Cause = {
   title: string;
   body: string;
+  bg: string;
 };
 
 const CAUSES: Cause[] = [
   {
     title: "Clogged Waterways",
     body: "Esteros and canals that once carried water away are blocked by years of accumulated waste and silt.",
+    bg: flood,
   },
   {
     title: "Illegal Dumping",
     body: "Plastic and household waste end up in drainage systems, choking the infrastructure meant to protect the city.",
+    bg: floodAgain,
   },
   {
     title: "Aging Infrastructure",
     body: "Much of the drainage network was built decades ago and was never designed for today's population density.",
+    bg: studentsFlood,
   },
   {
     title: "Land Subsidence",
     body: "Groundwater extraction is causing parts of Metro Manila to literally sink, making flooding worse each year.",
+    bg: landslide,
   },
 ];
 
@@ -77,11 +86,18 @@ export default function Causes() {
         },
       });
 
+      const bgs = gsap.utils.toArray<HTMLElement>('.cause-bg');
+
+      gsap.set(bgs, { autoAlpha: 0 });
+      gsap.set(bgs[0], { autoAlpha: 1 });
+
       causes.forEach((cause, i) => {
         if (i === 0) return;
 
         tl.to(causes[i - 1], { autoAlpha: 0, y: -40, duration: 1 })
           .to(cause, { autoAlpha: 1, y: 0, duration: 1 }, "<")
+          .to(bgs[i - 1], { autoAlpha: 0, duration: 1.2 }, "<")
+          .to(bgs[i], { autoAlpha: 1, duration: 1.2 }, "<")
           .to(
             dots[i - 1],
             { scale: 0.6, backgroundColor: "#55556A", duration: 1 },
@@ -99,6 +115,16 @@ export default function Causes() {
 
   return (
     <section className="causes" ref={containerRef} id="causes">
+      <div className="causes-bg-wrap">
+        {CAUSES.map((cause, i) => (
+          <div
+            className="cause-bg"
+            key={i}
+            style={{ backgroundImage: `url(${cause.bg})` }}
+          />
+        ))}
+        <div className="causes-bg-overlay" />
+      </div>
       <SectionEyebrow number="02" label="Root Causes" />
       <h2>Why It Happens</h2>
       <div className="causes-stage">

@@ -15,20 +15,29 @@ type Stat = {
 };
 
 const STATS: Stat[] = [
-  { value: 20, suffix: "", label: "Typhoons hit the Philippines each year" },
   {
-    value: 3.5,
+    value: 20,
+    suffix: "",
+    label: "Tropical cyclones enter Philippine waters each year",
+  },
+  {
+    value: 8.1,
     suffix: "M",
     decimals: 1,
-    label: "Residents affected by flooding annually",
+    label: "Affected by the August 2026 monsoon floods",
   },
   {
-    value: 40,
+    value: 12.8,
     prefix: "₱",
     suffix: "B",
-    label: "In annual flood-related damages",
+    decimals: 1,
+    label: "Average annual flood damage, 1990–2012",
   },
-  { value: 65, suffix: "%", label: "Of Metro Manila is flood-prone" },
+  {
+    value: 80,
+    suffix: "%",
+    label: "Of Manila residents live in flood-prone zones",
+  },
 ];
 
 export default function Stats() {
@@ -98,6 +107,9 @@ export default function Stats() {
           </div>
         ))}
       </div>
+      <p className="stats-source">
+        Sources: PAGASA · NDRRMC · OCD-NDRRMC · Earth Journalism Network
+      </p>
     </section>
   );
 }
