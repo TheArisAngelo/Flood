@@ -28,8 +28,8 @@ const CAUSES: Cause[] = [
     bg: floodAgain,
   },
   {
-    title: "Aging Infrastructure",
-    body: "Much of the drainage network was built decades ago and was never designed for today's population density.",
+    title: "Pedestrians Navigate a Flooded Crossing",
+    body: "Scenes like this play out often in low-lying urban areas during heavy monsoon rains, when streets can turn into shallow rivers within minutes turning routine trips into careful, step-by-step crossings.",
     bg: studentsFlood,
   },
   {
